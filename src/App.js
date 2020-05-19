@@ -4,6 +4,7 @@ import parse from 'html-react-parser';
 import { formatSeasons } from './utils/formatSeasons';
 import Episodes from './components/Episodes';
 import './styles.css';
+// Import fetchShow into App.js so you can make your async call from your useEffect hook.
 import fetchShow from './api/fetchShow';
 
 export default function App() {
@@ -12,6 +13,7 @@ export default function App() {
 	const [ selectedSeason, setSelectedSeason ] = useState('');
 	const episodes = seasons[selectedSeason] || [];
 
+// call fetchShow in your useEffect, you need to chain off the promise for a new .then(), then you need the data to be returned once the promise is resolved
 	useEffect(() => {
 		fetchShow().then((res) => {
 			setShow(res.data);
